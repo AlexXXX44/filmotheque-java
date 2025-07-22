@@ -1,0 +1,6 @@
+<li xmlns:th="http://www.thymeleaf.org" data-th-fragment="frag-liste-avis">
+<label for="selectAvis">Avis : </label>
+	<select id="selectAvis" data-th-field="*{listeAvis}" required multiple="multiple">
+		<option data-th-each="avis : ${avisSession}" data-th-text="${modelFilm.id} + ' ' + ${modelFilm.titre}"
+			data-th-value="${avis.id}"></option>
+	</select> </li>

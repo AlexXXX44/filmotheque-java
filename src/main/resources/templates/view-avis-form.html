@@ -1,0 +1,20 @@
+<!-- Formulaire pour l’ajout d’un avis au film -->
+<form xmlns:th="http://www.thymeleaf.org" data-th-fragment="frag-avis-form" 
+		action="/films/avis" method="post">
+	<h1>Ajouter d'un avis</h1>
+	<ul class="flex-outer">
+		<li>
+			<input type="hidden" name="titre" id="inputTitre" required data-th-value="${modelFilm.titre}" />
+		</li>
+		<li>
+			<label for="selectNote">Note : </label> 
+			<select name="idNote" id="selectNote" >
+				<option data-th-each="item : ${Session}" data-th-text="${item.id} + ' ' + ${item.titre}"
+					data-th-value="${item.id}"></option>
+			</select>
+			<label for="Commentaire">Commentaire : </label>
+			</input>
+		</li>
+		<li><button type="submit">Enregistrer</button></li>
+	</ul>
+</form>
