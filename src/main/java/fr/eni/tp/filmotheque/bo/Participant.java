@@ -1,5 +1,6 @@
 package fr.eni.tp.filmotheque.bo;
 
+@Entity
 public class Participant extends Personne {
 
 	public Participant() {

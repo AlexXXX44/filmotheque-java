@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.2.1'//ultraq layout
 
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
