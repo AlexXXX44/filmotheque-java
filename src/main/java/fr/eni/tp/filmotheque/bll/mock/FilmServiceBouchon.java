@@ -271,5 +271,36 @@ public class FilmServiceBouchon implements FilmService {
         Avis avis2 = new Avis(1, 5, "Drôle du début à la fin", membre1);
         bienvenueChezLesChtis.getAvis().add(avis);
         bienvenueChezLesChtis.getAvis().add(avis2);
+
+        Film partie1 = new Film(indexFilms++, "Retour vers le futur", 0, 0,
+                "", "retour vers le futur");
+        partie1.setGenre(lstGenres.get(1));
+        partie1.setRealisateur(consulterParticipantParId(22));
+        //Associer les acteurs
+        partie1.getActeurs().add(consulterParticipantParId(23));
+        partie1.getActeurs().add(consulterParticipantParId(25));
+        partie1.getActeurs().add(consulterParticipantParId(1));
+        lstTitres.add(partie1);
+        lstFilms.add(partie1);
+
+        Film partie2 = new Film(indexFilms++, "Retour vers le futur Partie 2", 0, 0,
+                "", "retour_vers_le_futur.png");
+        partie2.setGenre(lstGenres.get(1));
+        partie2.setRealisateur(consulterParticipantParId(22));
+        //Associer les acteurs
+        partie2.getActeurs().add(consulterParticipantParId(23));
+        partie2.getActeurs().add(consulterParticipantParId(25));
+        lstTitres.add(partie2);
+        lstFilms.add(partie2);
+
+        Film partie3 = new Film(indexFilms++, "Retour vers le futur Partie 3", 0, 0,
+                "", "retour_vers_le_futur_part3.png");
+        partie3.setGenre(lstGenres.get(1));
+        partie3.setRealisateur(consulterParticipantParId(22));
+//        Associer les acteurs
+        partie3.getActeurs().add(consulterParticipantParId(23));
+        partie3.getActeurs().add(consulterParticipantParId(25));
+        lstTitres.add(partie3);
+        lstFilms.add(partie3);
     }
 }
