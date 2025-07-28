@@ -1,11 +1,14 @@
 package fr.eni.tp.filmotheque.bo;
 
+import jakarta.persistence.Entity;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Objects;
 
+@Entity
 public class Avis implements List<Avis> {
 
 	private long id;

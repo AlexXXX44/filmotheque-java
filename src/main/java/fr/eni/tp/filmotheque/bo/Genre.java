@@ -1,7 +1,10 @@
 package fr.eni.tp.filmotheque.bo;
 
+import jakarta.persistence.Entity;
+
 import java.util.Objects;
 
+@Entity
 public class Genre {
 
 	//Attributs

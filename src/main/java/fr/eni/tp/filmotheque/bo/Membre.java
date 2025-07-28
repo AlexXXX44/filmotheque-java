@@ -1,5 +1,8 @@
 package fr.eni.tp.filmotheque.bo;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Membre extends Personne {
 
 	private String pseudo;

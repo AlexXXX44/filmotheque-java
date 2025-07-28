@@ -1,9 +1,14 @@
 package fr.eni.tp.filmotheque.bo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
 public class Film {
 
     private long id;
@@ -12,6 +17,8 @@ public class Film {
     private int duree;
     private String affiche;
     private String synopsis;
+    @ManyToOne
+    @JoinColumn(name = "realisateur_id")
     private Participant realisateur;
     private List<Participant> acteurs;
     private Genre genre;
