@@ -3,6 +3,7 @@ package fr.eni.tp.filmotheque.bll.mock;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import fr.eni.tp.filmotheque.bll.FilmService;
@@ -13,7 +14,7 @@ import fr.eni.tp.filmotheque.bo.Membre;
 import fr.eni.tp.filmotheque.bo.Participant;
 
 @Service
-//@Profile("dev")
+@Profile("dev")
 public class FilmServiceBouchon implements FilmService {
     // Attributs statiques pour gérer les valeurs à afficher et simuler les données
     // en base
@@ -109,12 +110,6 @@ public class FilmServiceBouchon implements FilmService {
      * d'information
      */
     public void simulationCoucheDALetDB() {
-        /* Création de la liste des affiches
-        ArrayList lstAffiches;
-        lstAffiches = new ArrayList();
-        for (int index = 0; index < lstAffiches.toArray().length; index++) {
-            lstAffiches.add(new Film(index + 1; lstAffiches[index]);
-        }*/
         // Création de la liste des genres
         for (int index = 0; index < genres.length; index++) {
             lstGenres.add(new Genre(index + 1, genres[index]));
@@ -233,8 +228,8 @@ public class FilmServiceBouchon implements FilmService {
         lstFilms.add(leMondeDapres);
 
         Film theFly = new Film(indexFilms++, "The Fly", 1986, 95,
-                "",
-                "Il s'agit de l'adaptation cinématographique de la nouvelle éponyme de l'auteur George Langelaan.");
+                "Il s'agit de l'adaptation cinématographique de la nouvelle éponyme de l'auteur George Langelaan.",
+                        "la_mouche.png");
         theFly.setGenre(lstGenres.get(1));
         theFly.setRealisateur(consulterParticipantParId(2));
         // Associer les acteurs
@@ -244,8 +239,8 @@ public class FilmServiceBouchon implements FilmService {
         lstFilms.add(theFly);
 
         Film theBFG = new Film(indexFilms++, "The BFG", 2016, 117,
-                "",
-                "Le Bon Gros Géant est un géant bien différent des autres habitants du Pays des Géants.");
+                "Le Bon Gros Géant est un géant bien différent des autres habitants du Pays des Géants.",
+                        "le_BGG.png");
         theBFG.setGenre(lstGenres.get(4));
         theBFG.setRealisateur(consulterParticipantParId(1));
         // Associer les acteurs
@@ -255,8 +250,8 @@ public class FilmServiceBouchon implements FilmService {
         lstFilms.add(theBFG);
 
         Film bienvenueChezLesChtis = new Film(indexFilms++, "Bienvenue chez les Ch'tis", 2008, 106,
-                "",
-                "Philippe Abrams est directeur de la poste de Salon-de-Provence. Il est marié à Julie, dont le caractère dépressif lui rend la vie impossible. Pour lui faire plaisir, Philippe fraude afin d'obtenir une mutation sur la Côte d'Azur. Mais il est démasqué: il sera muté à Bergues, petite ville du Nord.");
+                "Philippe Abrams est directeur de la poste de Salon-de-Provence. Il est marié à Julie, dont le caractère dépressif lui rend la vie impossible. Pour lui faire plaisir, Philippe fraude afin d'obtenir une mutation sur la Côte d'Azur. Mais il est démasqué: il sera muté à Bergues, petite ville du Nord.",
+                        "bienvenue_chez_les_chtis.png");
         bienvenueChezLesChtis.setGenre(lstGenres.get(4));
         bienvenueChezLesChtis.setRealisateur(consulterParticipantParId(3));
         // Associer les acteurs
@@ -273,7 +268,7 @@ public class FilmServiceBouchon implements FilmService {
         bienvenueChezLesChtis.getAvis().add(avis2);
 
         Film partie1 = new Film(indexFilms++, "Retour vers le futur", 0, 0,
-                "", "retour vers le futur");
+                "Oeuvre originale", "retour vers le futur");
         partie1.setGenre(lstGenres.get(1));
         partie1.setRealisateur(consulterParticipantParId(22));
         //Associer les acteurs
@@ -284,7 +279,7 @@ public class FilmServiceBouchon implements FilmService {
         lstFilms.add(partie1);
 
         Film partie2 = new Film(indexFilms++, "Retour vers le futur Partie 2", 0, 0,
-                "", "retour_vers_le_futur.png");
+                "Suite de l'original", "retour_vers_le_futur.png");
         partie2.setGenre(lstGenres.get(1));
         partie2.setRealisateur(consulterParticipantParId(22));
         //Associer les acteurs
@@ -294,7 +289,7 @@ public class FilmServiceBouchon implements FilmService {
         lstFilms.add(partie2);
 
         Film partie3 = new Film(indexFilms++, "Retour vers le futur Partie 3", 0, 0,
-                "", "retour_vers_le_futur_part3.png");
+                "Suite et fin de la trilogie", "retour_vers_le_futur_part3.png");
         partie3.setGenre(lstGenres.get(1));
         partie3.setRealisateur(consulterParticipantParId(22));
 //        Associer les acteurs
