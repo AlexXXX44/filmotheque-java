@@ -1,9 +1,6 @@
 package fr.eni.tp.filmotheque.bo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +19,18 @@ public class Film {
     @ManyToOne
     @JoinColumn(name = "realisateur_id")
     private Participant realisateur;
+
+    @ManyToMany
+    @JoinTable(
+            name = "film_acteur",
+            joinColumns = @JoinColumn(name = "film_id"),
+            inverseJoinColumns = @JoinColumn(name = "acteur_id")
+    )
     private List<Participant> acteurs;
     @ManyToOne
     @JoinColumn(name = "genre_id")
     private Genre genre;
+    @OneToMany(mappedBy = "film")
     private List<Avis> avis;
 
     public Film() {
@@ -162,4 +167,11 @@ public class Film {
         return id == other.id;
     }
 
+    public String getAffiche() {
+        return affiche;
+    }
+
+    public void setAffiche(String affiche) {
+        this.affiche = affiche;
+    }
 }
