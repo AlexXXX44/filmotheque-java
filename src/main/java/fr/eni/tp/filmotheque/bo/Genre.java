@@ -1,6 +1,7 @@
 package fr.eni.tp.filmotheque.bo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.util.Objects;
 
@@ -8,6 +9,7 @@ import java.util.Objects;
 public class Genre {
 
 	//Attributs
+	@Id
 	private long id;
 	private String titre;
 
