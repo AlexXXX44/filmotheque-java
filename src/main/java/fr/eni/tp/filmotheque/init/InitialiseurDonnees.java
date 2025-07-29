@@ -53,8 +53,8 @@ public class InitialiseurDonnees {
             filmRepository.save(jurassic);
 
             // --- AVIS ---
-            avisRepository.save(new Avis(null, 4, "On rit du début à la fin", jurassic, membre));
-            avisRepository.save(new Avis(null, 5, "Drôle du début à la fin", jurassic, membre));
+            avisRepository.save(new Avis( 4, "On rit du début à la fin", jurassic, membre));
+            avisRepository.save(new Avis(5, "Drôle du début à la fin", jurassic, membre));
         };
     }
 }
