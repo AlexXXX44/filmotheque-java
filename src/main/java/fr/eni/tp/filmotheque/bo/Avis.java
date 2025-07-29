@@ -238,7 +238,7 @@ public class Avis implements List<Avis> {
         return;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
