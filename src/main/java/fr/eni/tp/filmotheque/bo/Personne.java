@@ -1,15 +1,16 @@
 package fr.eni.tp.filmotheque.bo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Personne {
 
     @Id
-    private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	private String nom;
 	private String prenom;
 
