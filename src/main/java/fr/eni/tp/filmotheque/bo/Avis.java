@@ -18,13 +18,13 @@ public class Avis implements List<Avis> {
     @JoinColumn(name = "film_id")
     private Film film;
     @Id
-    private long id;
+    private int id;
     private int note;
     private String commentaire;
     @ManyToOne
     private Membre membre;
 
-    public Avis(long id, int note, String commentaire, Film film, Membre membre) {
+    public Avis(int id, int note, String commentaire, Film film, Membre membre) {
         this.id = id;
         this.note = note;
         this.commentaire = commentaire;
@@ -41,6 +41,9 @@ public class Avis implements List<Avis> {
 
     public Avis(int id, int i, String s, Membre membre1) {
 
+    }
+
+    public Avis() {
     }
 
     public int getNote() {
@@ -242,7 +245,11 @@ public class Avis implements List<Avis> {
         this.id = id;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
+    }
+
+    public Film getFilm() {
+        return film;
     }
 }
