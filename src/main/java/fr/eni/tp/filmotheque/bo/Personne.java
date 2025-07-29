@@ -1,13 +1,15 @@
 package fr.eni.tp.filmotheque.bo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.util.Objects;
 
 @Entity
 public class Personne {
 
-	private long id;
+    @Id
+    private long id;
 	private String nom;
 	private String prenom;
 
@@ -22,10 +24,6 @@ public class Personne {
 	public Personne(long id, String nom, String prenom) {
 		this(nom, prenom);// Appel du constructeur précédent
 		this.id = id;
-	}
-
-	public long getId() {
-		return id;
 	}
 
 	public void setId(long id) {
@@ -77,4 +75,11 @@ public class Personne {
 		return id == other.id;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getId() {
+		return id;
+	}
 }
