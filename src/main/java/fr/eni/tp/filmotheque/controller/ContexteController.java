@@ -1,5 +1,6 @@
 package fr.eni.tp.filmotheque.controller;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,9 +18,9 @@ import fr.eni.tp.filmotheque.bo.Membre;
 @SessionAttributes({ "membreEnSession" })
 public class ContexteController {
 
-	private ContexteService service;
+	private final ContexteService service;
 
-	public ContexteController(ContexteService service) {
+	public ContexteController(@Qualifier("contexteService") ContexteService service) {
 		this.service = service;
 	}
 
