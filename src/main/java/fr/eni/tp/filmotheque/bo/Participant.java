@@ -5,7 +5,7 @@ import jakarta.persistence.Entity;
 @Entity
 public class Participant extends Personne {
 
-	public Participant() {
+	public Participant(Long o, String spielberg, String steven) {
 	}
 
 	public Participant(String nom, String prenom) {
