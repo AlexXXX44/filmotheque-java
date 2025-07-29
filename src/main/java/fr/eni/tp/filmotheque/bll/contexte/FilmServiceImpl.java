@@ -15,9 +15,6 @@ import java.util.List;
 public class FilmServiceImpl implements FilmService {
 
     @Autowired
-    private FilmService filmService;
-
-    @Autowired
     private FilmRepository filmRepository;
 
     @Autowired
