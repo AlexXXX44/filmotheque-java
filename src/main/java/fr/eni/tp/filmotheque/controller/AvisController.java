@@ -1,5 +1,6 @@
 package fr.eni.tp.filmotheque.controller;
 
+import fr.eni.tp.filmotheque.bo.Film;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,8 +35,9 @@ public class AvisController {
 			if ( titre != null) {
 				model.addAttribute("titreFilm", titre);
 				model.addAttribute("idFilm", idFilm);
+				Film membre = new Film();
 				Membre membre1 = new Membre();
-				Avis avis = new Avis(1, 4, "On rit du début à la fin", membre1);
+				Avis avis = new Avis(1, 4, "On rit du début à la fin", membre, membre1);
 				// Ajout de l'instance du formulaire dans le modèle
 				model.addAttribute("avis", avis);
 				return new ModelAndView("view-avis-form", "modelAvis", avis);

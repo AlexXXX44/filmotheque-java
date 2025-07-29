@@ -32,20 +32,6 @@ public class Avis implements List<Avis> {
         this.membre = membre;
     }
 
-    public Avis(int id, String commentaire, Film film, Membre membre) {
-        this.id = id;
-        this.commentaire = commentaire;
-        this.film = film;
-        this.membre = membre;
-    }
-
-    public Avis(int id, int i, String s, Membre membre1) {
-
-    }
-
-    public Avis() {
-    }
-
     public int getNote() {
         return note;
     }
