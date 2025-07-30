@@ -1,6 +1,8 @@
 package fr.eni.tp.filmotheque.bo;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.util.Objects;
@@ -10,6 +12,7 @@ public class Genre {
 
 	//Attributs
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String titre;
 
@@ -64,12 +67,10 @@ public class Genre {
 	//Auto-génération du toString pour uniformiser les traces
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(titre);
-		builder.append(" (");
-		builder.append(id);
-		builder.append(")");
-		return builder.toString();
+        return titre +
+                " (" +
+                id +
+                ")";
 	}
 
 }

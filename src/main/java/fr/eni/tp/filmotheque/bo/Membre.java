@@ -5,39 +5,27 @@ import jakarta.persistence.Entity;
 @Entity
 public class Membre extends Personne {
 
-	private String pseudo;
+	private String email;//	pseudo;
 	private String motDePasse;
 	private boolean admin;
 
 	public Membre() {
 	}
 
-	public Membre(String nom, String prenom, String pseudo, String motDePasse) {
+	public Membre(String nom, String prenom, String email, String motDePasse) {
 		super(nom, prenom);
-		this.pseudo = pseudo;
+		this.email = email;
 		this.motDePasse = motDePasse;
 	}
 
-	public Membre(long id, String nom, String prenom, String pseudo, String motDePasse) {
+	public Membre(long id, String nom, String prenom, String email, String motDePasse) {
 		super(id, nom, prenom);
-		this.pseudo = pseudo;
+		this.email = email;
 		this.motDePasse = motDePasse;
-	}
-
-	public String getPseudo() {
-		return pseudo;
-	}
-
-	public void setPseudo(String pseudo) {
-		this.pseudo = pseudo;
 	}
 
 	public String getMotDePasse() {
 		return motDePasse;
-	}
-
-	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = motDePasse;
 	}
 
 	public boolean isAdmin() {
@@ -50,14 +38,19 @@ public class Membre extends Personne {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(super.toString());
-		builder.append(" - Membre (pseudo=");
-		builder.append(pseudo);
-		builder.append(", admin=");
-		builder.append(admin);
-		builder.append(") ");
-		return builder.toString();
+        return super.toString() +
+                " - Membre (pseudo=" +
+                email +
+                ", admin=" +
+                admin +
+                ") ";
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String mail) {
+	this.email = mail;
+	}
 }

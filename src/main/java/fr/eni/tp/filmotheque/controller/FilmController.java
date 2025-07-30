@@ -4,12 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.HttpSessionRequiredException;
+import org.springframework.web.bind.annotation.*;
 
 import fr.eni.tp.filmotheque.bll.FilmService;
 import fr.eni.tp.filmotheque.bo.Film;
@@ -23,14 +19,16 @@ import fr.eni.tp.filmotheque.bo.Participant;
 @SessionAttributes({ "genresEnSession", "membreEnSession", "participantsEnSession" })
 public class FilmController {
 
-	private FilmService filmService;
+	private final FilmService filmService;
 
 	public FilmController(FilmService filmService) {
 		this.filmService = filmService;
 	}
 
 	@GetMapping
-	public String afficherFilms(Model model) {
+	public String afficherFilms(
+//			@ModelAttribute("films")
+			Model model) {
 		System.out.println("Tous les films : ");
 		List<Film> films = filmService.consulterFilms();
 		// Ajout des films dans le modèle
@@ -39,7 +37,7 @@ public class FilmController {
 	}
 
 	@GetMapping("/detail")
-	public String afficherUnFilm(@RequestParam(name = "id", required = true) long id, Model model) {
+	public String afficherUnFilm(@RequestParam(name = "id") long id, Model model) {
 		if (id > 0) {// L'identifiant en base commencera en 1
 			Film film = filmService.consulterFilmParId(id);
 			if (film != null) {
@@ -65,13 +63,17 @@ public class FilmController {
 		if (membreEnSession != null && membreEnSession.getId() >= 1 && membreEnSession.isAdmin()) {
 				// Ajout de l'instance dans le modèle
 			model.addAttribute("film", new Film());
-			@SuppressWarnings("unused")
-			Film film;
-			return "view-film-form";
+            return "view-film-form"; //return "film/creation";
 		} else {
 			// redirection vers la page des films
 			return "redirect:/films";
 		}
+	}
+
+//	ette méthode pour gérer le cas où membreEnSession n'existe pas
+	@ExceptionHandler(HttpSessionRequiredException.class)
+	public String handleSessionRequiredException() {
+		return "redirect:/login";
 	}
 
 	// Création d'un nouveau film

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" data-th-replace="~{layouts/layout :: layout-filmotheque( 
 					titrePage=~{:: title},
 					contenuPage=~{:: main},
-					ressourcesSupp=~{:: #ressources-css})}">
+					ressourcesSupp=~{:: #ressources-css})}" lang="fr">
 
 <head>
 	<!-- Films comme titre de page -->
@@ -29,7 +29,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr data-th-each="film : ${modelFilms}">
+				<tr data-th-each="film : ${films}">
 					<td data-th-text="${film.genre.titre}"></td>
 					<td data-th-text="${film.annee}"></td>
 					<td data-th-text="${film.titre}"></td>

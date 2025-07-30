@@ -39,14 +39,14 @@ public class ContexteController {
 			membreEnSession.setId(aCharger.getId());
 			membreEnSession.setNom(aCharger.getNom());
 			membreEnSession.setPrenom(aCharger.getPrenom());
-			membreEnSession.setPseudo(aCharger.getPseudo());
+			membreEnSession.setEmail(aCharger.getEmail());
 			membreEnSession.setAdmin(aCharger.isAdmin());
 
 		} else {
 			membreEnSession.setId(0);
-			membreEnSession.setNom(null);
-			membreEnSession.setPrenom(null);
-			membreEnSession.setPseudo(null);
+			membreEnSession.setNom("colin");
+			membreEnSession.setPrenom("alexandre");
+			membreEnSession.setEmail("alexandre.colin2023@campus-eni.fr");
 			membreEnSession.setAdmin(false);
 
 		}

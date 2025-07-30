@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import fr.eni.tp.filmotheque.bll.contexte.ContexteService;
 import fr.eni.tp.filmotheque.bo.Membre;
 
-@Service
+@Service("contexteService")
 @Profile("dev")
 public class ContexteServiceBouchon implements ContexteService {
 	// Liste des membres
@@ -27,6 +27,6 @@ public class ContexteServiceBouchon implements ContexteService {
 
 	@Override
 	public Membre charger(String email) {
-		return lstMembres.stream().filter(item -> item.getPseudo().equals(email)).findAny().orElse(null);
+		return lstMembres.stream().filter(item -> item.getEmail().equals(email)).findAny().orElse(null);
 	}
 }
