@@ -39,7 +39,7 @@ public class InitialiseurDonnees {
             Participant cron = participantRepository.save(new Participant("Cronenberg", "David"));
 
             // --- MEMBRES ---
-            Membre membre = membreRepository.save(new Membre(0, "Baille", "Anne-Lise", "abaille@campus-eni.fr", null));
+            Membre membre = membreRepository.save(new Membre(0, "Baille", "Anne-Lise", "abaille@campus-eni.fr", "motdepasse"));
 
             // --- FILMS ---
             Film jurassic = new Film(0, "Jurassic Park", 1993, 128,

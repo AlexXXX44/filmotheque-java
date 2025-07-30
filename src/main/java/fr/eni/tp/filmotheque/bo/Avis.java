@@ -5,10 +5,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.Objects;
 
 @Entity
@@ -32,6 +28,10 @@ public class Avis
         this.commentaire = commentaire;
         this.film = film;
         this.membre = membre;
+    }
+
+    public Avis() {
+
     }
 
     public int getNote() {
@@ -97,5 +97,9 @@ public class Avis
 
     public Film getFilm() {
         return film;
+    }
+
+    public void setFilm(Film film) {
+        return;
     }
 }
