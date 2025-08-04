@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/base :: layout (~{::body},'serie-detail')}">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${serie.name} + '|' + ${title}">Série | Default</title>
+</head>
+<body>
+<div class="series-details">
+  <div>
+    <img th:src="@{/img/poster/{poster}(poster=${serie.poster})}" alt="poster">
+  </div>
+  <h2 th:text="${serie.name}">Nom série</h2>
+  <div>User ratings: <span th:text="${serie.vote}">Note</span></div>
+  <div>Categorized in: <span th:text="${serie.genres}">Genres</span></div>
+  <div>Serie status: <span th:text="${serie.status}">Statut</span></div>
+  <div th:text="${serie.description}">Description</div>
+  <div>
+    Aired from
+    <span th:text="${#dates.format(serie.firstAirDate,'dd/MM/yyyy')}">Date de début de diffusion</span>
+    to
+    <span th:text="${#dates.format(serie.lastAirDate,'dd/MM/yyyy')}">Date de fin de diffusion</span>
+  </div>
+  <div th:utext="${#strings.replace(serie.overview, '\n', '<br/>')}">Résumé</div>
+
+  <section class="seasons">
+    <h3>Seasons</h3>
+    <div th:each="season : ${serie.seasons}">
+      <img th:src="@{/img/posters/seasons/{poster}(poster=${season.poster})}" alt="poster">
+      <article>
+        <div>
+          <h4 th:text="${season.name}">Nom de la saison</h4>
+          <h4>Season <span th:text="${season.number}">n°</span></h4>
+          <div th:if="${season.overview}"
+          >Résumé</div>
+          <!--               th:text="{season.overview}"-->
+          <div th:if="${season.episodes > 0}"></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!--Styles dynamiques -->
+  <div th:fragment="extrastyles">
+    <style th:inline="css">
+      body {
+        color:white;
+        background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0, 0, 0, 0.7));
+        /*background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0, 0, 0, 0.7)),*/
+        /*url([[${'/img/backdrops/' + serie.backdrop}]]);*/
+      }
+    </style>
+  </div>
+<!--  <section class="series-details-cast"-->
+</div>
+
+</body>
+</html>

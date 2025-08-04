@@ -2,16 +2,13 @@ package fr.eni.tp.filmotheque.controller;
 
 import java.util.List;
 
+import fr.eni.tp.filmotheque.bo.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.annotation.*;
 
 import fr.eni.tp.filmotheque.bll.FilmService;
-import fr.eni.tp.filmotheque.bo.Film;
-import fr.eni.tp.filmotheque.bo.Genre;
-import fr.eni.tp.filmotheque.bo.Membre;
-import fr.eni.tp.filmotheque.bo.Participant;
 
 @Controller
 @RequestMapping("/films")

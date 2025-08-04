@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une saison</title>
+</head>
+<body>
+<h2>Ajouter une saison</h2>
+<form th:action="@{/seasons/save}" method="post">
+    <input type="hidden" th:field="*{serie.id}" name="idSerie" th:value="${idSerie}"/>
+    <label>Numéro de saison :</label>
+    <label>
+        <input type="number" th:field="*{serie.number}" required/>
+    </label>
+    <label>Nom de la saison :</label>
+    <label>Poster :</label>
+    <label>
+        <input type="text" th:field="*{serie.poster}" required/>
+    </label>
+    <label>Description :</label>
+    <label>
+        <textarea th:field="*{serie.overview}" required></textarea>
+    </label>
+    <button type="submit" value="Ajouter">Ajouter</button>
+</form>
+</body>
+</html>
