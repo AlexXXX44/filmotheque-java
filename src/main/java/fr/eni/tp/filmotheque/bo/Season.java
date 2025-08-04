@@ -1,6 +1,5 @@
 package fr.eni.tp.filmotheque.bo;
 
-import fr.eni.tp.filmotheque.bo.Serie;
 import jakarta.persistence.*;
 
 import java.sql.Date;
@@ -32,6 +31,22 @@ public class Season {
     @JoinColumn(name = "serie_id")
     private Serie serie;
 
+    public Season(int id, int number, Date $firstAirDate, String overview, String poster, int tmdbId, Date dateCreated, Date dateModified, Serie serie) {
+        this.id = id;
+        this.number = number;
+        this.$firstAirDate = $firstAirDate;
+        this.overview = overview;
+        this.poster = poster;
+        this.tmdbId = tmdbId;
+        this.dateCreated = dateCreated;
+        this.dateModified = dateModified;
+        this.serie = serie;
+    }
+
+    public Season() {
+
+    }
+
     public Serie getSerie() {
         return serie;
     }
@@ -40,4 +55,11 @@ public class Season {
         this.serie = serie;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

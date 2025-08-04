@@ -3,6 +3,9 @@ package fr.eni.tp.filmotheque.bo;
 import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -11,15 +14,19 @@ import java.util.List;
 @Entity
 public class Serie extends Season {
 
+    // Getters et Setters
+    @Setter
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Getter
     @NotBlank(message = "Veuillez entrer un nom ou un titre pour votre série!")
     @Size(min = 2, max = 255)
-    @Column(length = 255)
     private String name;
 
+    @Getter
     @Column(columnDefinition = "TEXT")
     private String overview;
 
@@ -59,26 +66,9 @@ public class Serie extends Season {
     public Serie() {
     }
 
-    // Getters et Setters
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public Serie setName(String name) {
         this.name = name;
         return this;
-    }
-
-    public String getOverview() {
-        return overview;
     }
 
     public Serie setOverview(String overview) {
