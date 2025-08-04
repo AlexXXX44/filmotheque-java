@@ -36,13 +36,13 @@ public class InitialiseurDonnees {
             Participant spielberg = participantRepository.save(new Participant("Spielberg", "Steven"));
             Participant goldblum = participantRepository.save(new Participant("Goldblum", "Jeff"));
             Participant attenborough = participantRepository.save(new Participant("Attenborough", "Richard"));
-            Participant cron = participantRepository.save(new Participant("Cronenberg", "David"));
+//            Participant cron = participantRepository.save(new Participant("Cronenberg", "David"));
 
             // --- MEMBRES ---
             Membre membre = membreRepository.save(new Membre(0, "Baille", "Anne-Lise", "abaille@campus-eni.fr", "motdepasse"));
 
             // --- FILMS ---
-            Film jurassic = new Film(0, "Jurassic Park", 1993, 128,
+            Film jurassic = new Film(1, "Jurassic Park", 1993, 128,
                     "Le film raconte l'histoire d'un milliardaire et son équipe de généticiens parvenant à ramener à la vie des dinosaures grâce au clonage.",
                     "jurassic.png");
 
