@@ -6,35 +6,41 @@ plugins {
 
 group = 'fr.eni.tp'
 version = '0.0.1-SNAPSHOT'
-
-java {
-	sourceCompatibility = '17'
-}
+sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-    implementation 'mysql:mysql-connector-java'
+	// MySQL connector
+	implementation 'mysql:mysql-connector-java:8.0.33'
 
-    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
-
-// Implémentation Hibernate Validator
-    implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
-
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.2.1'//ultraq layout
-
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	// Spring Boot starters
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-	implementation 'org.projectlombok:lombok'
+
+	// Thymeleaf + Security
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.2.1'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
-	testImplementation 'org.springframework.security:spring-security-test'
+
+	// Validation
+	implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+	implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
+
+	// Lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// Devtools
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// Tests
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {
