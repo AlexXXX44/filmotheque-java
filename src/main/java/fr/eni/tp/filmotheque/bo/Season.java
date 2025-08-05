@@ -13,7 +13,7 @@ public class Season {
 
     private int number;
 
-    private Date $firstAirDate;
+    private Date firstAirDate;
 
     @Column(columnDefinition = "TEXT")
     private String overview;
@@ -31,10 +31,10 @@ public class Season {
     @JoinColumn(name = "serie_id")
     private Serie serie;
 
-    public Season(int id, int number, Date $firstAirDate, String overview, String poster, int tmdbId, Date dateCreated, Date dateModified, Serie serie) {
+    public Season(int id, int number, Date firstAirDate, String overview, String poster, int tmdbId, Date dateCreated, Date dateModified, Serie serie) {
         this.id = id;
         this.number = number;
-        this.$firstAirDate = $firstAirDate;
+        this.firstAirDate = firstAirDate;
         this.overview = overview;
         this.poster = poster;
         this.tmdbId = tmdbId;

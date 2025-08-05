@@ -37,7 +37,7 @@ public class AvisController {
 				model.addAttribute("idFilm", idFilm);
 				Film membre = new Film();
 				Membre membre1 = new Membre();
-				Avis avis = new Avis(1, 4, "On rit du début à la fin", membre, membre1);
+				Avis avis = new Avis(4, "On rit du début à la fin", membre, membre1);
 				// Ajout de l'instance du formulaire dans le modèle
 				model.addAttribute("avis", avis);
 				return new ModelAndView("view-avis-form", "modelAvis", avis);

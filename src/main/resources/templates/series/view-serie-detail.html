@@ -2,10 +2,30 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/base :: layout (~{::body},'serie-detail')}">
 <head>
   <meta charset="UTF-8">
-  <title th:text="${serie.name} + '|' + ${title}">Série | Default</title>
+<!--  <title th:text="${serie.name} + '|' + ${title}">Série | Default</title>-->
+  <title>Détails de la Série</title>
+  <link rel="stylesheet" href="@{/css/style.css}">
 </head>
 <body>
-<div class="series-details">
+
+<div class="header"></div>
+<div class="flash flash-success" th:if="${successMessage}" th:text="${successMessage}"></div>
+<div class="flash flash-error" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+<h1 th:text="${serie.titre}">Titre de la série</h1>
+
+<section class="series-details">
+  <div>
+    <label>Résumé :</label>
+    <p th:text="${serie.overview}">Lorem ipsum</p>
+  </div>
+  <div>
+    <label>Année de diffusion :</label>
+    <p th:text="${serie.annee}"></p>
+  </div>
+  <div>
+    <label>Genre :</label>
+    <p th:text="${serie.genre}"></p>
+  </div>
   <div>
     <img th:src="@{/img/poster/{poster}(poster=${serie.poster})}" alt="poster">
   </div>
@@ -22,6 +42,7 @@
   </div>
   <div th:utext="${#strings.replace(serie.overview, '\n', '<br/>')}">Résumé</div>
 
+  <h2>Saisons</h2>
   <section class="seasons">
     <h3>Seasons</h3>
     <div th:each="season : ${serie.seasons}">
@@ -38,6 +59,7 @@
       </article>
     </div>
   </section>
+  <a th:href="@{/series}" style="display: inline-block; margin-top: 1rem;">← Retour à la liste</a>
 
   <!--Styles dynamiques -->
   <div th:fragment="extrastyles">
@@ -51,7 +73,7 @@
     </style>
   </div>
 <!--  <section class="series-details-cast"-->
-</div>
+</section>
 
 </body>
 </html>

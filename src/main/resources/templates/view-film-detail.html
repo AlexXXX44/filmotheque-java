@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	data-th-replace="~{layouts/layout :: layout-filmotheque( 
+	th-replace="~{layouts/layout :: layout-filmotheque(
 					titrePage=~{:: title},
 					contenuPage=~{:: main},
-					ressourcesSupp=~{:: #ressources-css})}">
+					ressourcesSupp=~{:: #ressources-css})}" lang="fr">
 
 <head>
 <!-- Détail comme titre de page -->
 <title>Détail</title>
 <!-- Ajout de CSS tp-film-table.css -->
 <th:block id="ressources-css">
-	<link rel="stylesheet" data-th-href="@{/css/tp-film-form.css}">
+	<link rel="stylesheet" th-href="@{/css/tp-film-form.css}">
 </th:block>
 
 </head>
-<body>	<!--~{} -->		
+<body>	<!--~{} -->
 	<main>
-		<form data-th-replace="~{fragments/fragment-film-form :: frag-film-form(~{})}">
+		<form th-replace="~{fragments/fragment-film-form :: frag-film-form(~{})}">
 		</form>
 	</main>
 

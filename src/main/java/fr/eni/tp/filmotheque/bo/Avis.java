@@ -1,9 +1,6 @@
 package fr.eni.tp.filmotheque.bo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -13,6 +10,7 @@ public class Avis
 {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @ManyToOne
     @JoinColumn(name = "film_id")
@@ -22,8 +20,7 @@ public class Avis
     @ManyToOne
     private Membre membre;
 
-    public Avis(int id, int note, String commentaire, Film film, Membre membre) {
-        this.id = id;
+    public Avis(int note, String commentaire, Film film, Membre membre) {
         this.note = note;
         this.commentaire = commentaire;
         this.film = film;

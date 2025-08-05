@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-public class Serie extends Season {
+public class Serie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,7 +58,6 @@ public class Serie extends Season {
     public Serie() {
     }
 
-    @Override
     public int getId() {
         return id;
     }

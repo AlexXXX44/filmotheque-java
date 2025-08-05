@@ -262,8 +262,8 @@ public class FilmServiceBouchon implements FilmService {
 
         // Création d'un membre et un avis
         Membre membre1 = new Membre(1, "Baille", "Anne-Lise", "abaille@campus-eni.fr", null);
-        Avis avis = new Avis(1, 4, "On rit du début à la fin",bienvenueChezLesChtis, membre1);
-        Avis avis2 = new Avis(2, 5, "Drôle du début à la fin",bienvenueChezLesChtis, membre1);
+        Avis avis = new Avis(4, "On rit du début à la fin",bienvenueChezLesChtis, membre1);
+        Avis avis2 = new Avis(5, "Drôle du début à la fin",bienvenueChezLesChtis, membre1);
         bienvenueChezLesChtis.getAvis().add(avis);
         bienvenueChezLesChtis.getAvis().add(avis2);
 

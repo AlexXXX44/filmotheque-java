@@ -16,7 +16,7 @@ repositories {
 }
 dependencies {
 	// MySQL connector
-//	implementation 'mysql:mysql-connector-java:8.0.33'
+	implementation 'mysql:mysql-connector-java'
 	runtimeOnly 'mysql:mysql-connector-java'
 
 	// Spring Boot starters

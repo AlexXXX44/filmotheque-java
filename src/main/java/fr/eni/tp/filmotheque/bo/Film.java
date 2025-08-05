@@ -38,7 +38,7 @@ public class Film {
         avis = new ArrayList<>();
     }
 
-    public Film(String titre, int annee, int duree, String synopsis, String affiche) {
+    public Film(String titre, int annee, int duree, String affiche, String synopsis) {
         this.titre = titre;
         this.annee = annee;
         this.duree = duree;
