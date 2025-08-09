@@ -49,7 +49,7 @@ public class Film {
         avis = new ArrayList<>();
     }
 
-    public Film(long id, String titre, int annee, int duree, String synopsis, String affiche) {
+    public Film(int id, String titre, int annee, int duree, String synopsis, String affiche) {
         this(titre, annee, duree, synopsis, affiche);
         this.id = id;
     }
@@ -74,26 +74,6 @@ public class Film {
         return annee;
     }
 
-    public void setAnnee(int annee) {
-        this.annee = annee;
-    }
-
-    public int getDuree() {
-        return duree;
-    }
-
-    public void setDuree(int duree) {
-        this.duree = duree;
-    }
-
-    public String getSynopsis() {
-        return synopsis;
-    }
-
-    public void setSynopsis(String synopsis) {
-        this.synopsis = synopsis;
-    }
-
     public Participant getRealisateur() {
         return realisateur;
     }
@@ -104,10 +84,6 @@ public class Film {
 
     public List<Participant> getActeurs() {
         return acteurs;
-    }
-
-    public void setActeurs(List<Participant> acteurs) {
-        this.acteurs = acteurs;
     }
 
     public Genre getGenre() {
