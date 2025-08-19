@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" th:href="@{/css/series.css}">
 <head>
     <meta charset="UTF-8">
     <title>Liste des séries</title>
@@ -9,7 +10,7 @@
 <section class="series-list">
     <div data-th-each="serie : ${series}">
         <article>
-            <a href="@{/series/{id}(id=${serie.id})}"
+            <a th:href="@{/series/{id}(id=${serie.id})}"
                th:tiled="'View series details | ' + ${#lists.size(serie.seasons)} + ${#strings.capitalize(serie.name)}">
                 <img th:src="@{/img/posters/series/{poster}(poster=${serie.poster})}"
                      th:alt="${serie.name}"/>
