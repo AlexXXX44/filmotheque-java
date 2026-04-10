@@ -1,0 +1,132 @@
+/* series.css — styles pour la grille de séries */
+:root {
+    /* Palette et métriques */
+    --bg: #0b0d12;
+    --surface: #10141f;
+    --border: 1px solid rgba(255, 255, 255, 0.08);
+    --text: #e7eaf1;
+    --muted: #9aa3b2;
+    --accent: #5aa3ff;
+
+    --radius: 12px;
+    --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.45);
+
+    color-scheme: dark light;
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg: #f6f8fc;
+        --surface: #ffffff;
+        --border: 1px solid rgba(17, 24, 39, 0.08);
+        --text: #0f172a;
+        --muted: #4b5563;
+        --accent: #2563eb;
+        --shadow: 0 6px 16px rgba(2, 6, 23, 0.08);
+        --shadow-hover: 0 12px 28px rgba(2, 6, 23, 0.12);
+    }
+}
+
+/* Optionnel si la page n’a pas déjà de styles globaux */
+body {
+    margin: 0;
+    background: radial-gradient(1200px 600px at 100% -200px, rgba(90, 163, 255, 0.12), transparent 60%),
+    radial-gradient(1000px 500px at -100px 120%, rgba(255, 99, 132, 0.10), transparent 60%),
+    var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+/* Grille responsive */
+.series-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(12px, 3vw, 24px);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: clamp(12px, 2.2vw, 20px);
+}
+
+@media (max-width: 768px) {
+    .series-list {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+}
+@media (min-width: 1440px) {
+    .series-list {
+        max-width: 1400px;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}
+
+/* Carte de poster */
+.series-list article {
+    position: relative;
+    background: var(--surface);
+    border: var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 160ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.series-list a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
+/* Image poster */
+.series-list img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    background:
+            linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.35) 100%),
+            linear-gradient(135deg, rgba(90, 163, 255, 0.08), rgba(255, 99, 132, 0.06));
+    transform: scale(1.001);
+    transition: transform 220ms ease;
+    will-change: transform, box-shadow;
+}
+
+/* Effets d’interaction */
+.series-list article:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(90, 163, 255, 0.35);
+}
+.series-list article:hover img {
+    transform: scale(1.03);
+}
+
+/* Focus accessible pour navigation clavier */
+.series-list a:focus-visible {
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 60%, transparent);
+    border-radius: var(--radius);
+}
+
+/* Petit badge esthétique (facultatif, si vous ajoutez un label plus tard) */
+.series-list .badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    padding: 4px 8px;
+    font-size: 12px;
+    line-height: 1;
+    color: #fff;
+    background: color-mix(in oklab, var(--accent) 84%, black 12%);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(4px);
+}
+
+/* Réduction des animations pour accessibilité */
+@media (prefers-reduced-motion: reduce) {
+    .series-list article,
+    .series-list img {
+        transition: none;
+    }
+}
