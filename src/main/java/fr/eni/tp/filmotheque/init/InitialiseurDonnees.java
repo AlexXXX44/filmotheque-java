@@ -42,7 +42,7 @@ public class InitialiseurDonnees {
             Membre membre = membreRepository.save(new Membre(0, "Baille", "Anne-Lise", "abaille@campus-eni.fr", "motdepasse"));
 
             // --- FILMS ---
-            Film jurassic = new Film(0, "Jurassic Park", 1993, 128,
+            Film jurassic = new Film(1, "Jurassic Park", 1993, 128,
                     "Le film raconte l'histoire d'un milliardaire et son équipe de généticiens parvenant à ramener à la vie des dinosaures grâce au clonage.",
                     "jurassic.png");
 

@@ -70,6 +70,18 @@ public class Serie {
         return name;
     }
 
+    public String getBackdrop() {
+        return backdrop;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public List<Season> getSeasons() {
+        return seasons;
+    }
+
     public Serie setName(String name) {
         this.name = name;
         return this;
