@@ -25,7 +25,7 @@ public class SerieController {
     }
 
     @GetMapping("/{id}")
-    public String afficherSerie(@PathVariable long id, Model model){
+    public String afficherSerie(@PathVariable("id") long id, Model model) {
         serieService.findById(id).ifPresent(s -> model.addAttribute("serie", s));
         // Récupère la série (404 si introuvable)
         Serie serie = serieService.findById(id)
@@ -39,6 +39,6 @@ public class SerieController {
 //        int seasonCount = (serie.getSeasons() != null) ? serie.getSeasons().size() : 0;
 //        model.addAttribute("seasonCount", seasonCount);
 
-        return "series/view-series";
+        return "series/view-serie-details";
     }
 }

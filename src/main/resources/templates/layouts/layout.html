@@ -4,11 +4,12 @@
 <!-- Rendre variable le contenu de la page -->
 <!-- Rendre variable le titre de la page -->
 <!-- Permettre d’ajouter ou non des ressources CSS -->
-<html xmlns:th="http://www.thymeleaf.org"
-	data-th-fragment="layout-filmotheque(titrePage, contenuPage, ressourcesSupp)">
+<!DOCTYPE html>
+<html th:fragment="layout (content, titrePage)" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title data-th-replace="${titrePage}">Filmotheque</title>
+    <meta charset="UTF-8">
+    <!-- Le titre devient dynamique grâce au paramètre -->
+<title th-text="${titrePage}">Filmotheque</title>
 
 <!-- Déclaration des CSS par défaut : -->
 <link rel="stylesheet" data-th-href="@{/css/layout.css}">
@@ -23,9 +24,15 @@
 	<!-- Intégration du fragment d'entête -->
 	<div data-th-replace="~{fragments/fragment-entete :: frag-entete}"></div>
 
-	<!-- Rendre variable le contenu de la page -->
-	<main data-th-replace="${contenuPage} ?: ~{}">Contenu de la page
-	</main>
+    <nav>
+        <!-- Ton menu de navigation ici -->
+        <a th:href="@{/series}">Toutes les séries</a>
+    </nav>
+
+    <main>
+        <!-- C'est ici que le body de tes autres pages sera injecté -->
+        <div th:replace="${content}"></div>
+    </main>
 
 	<!-- Intégration du fragment de pied de page -->
 	<div data-th-replace="~{fragments/fragment-piedpage :: frag-piedpage}"></div>

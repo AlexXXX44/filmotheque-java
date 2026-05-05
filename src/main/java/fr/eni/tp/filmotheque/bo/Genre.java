@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 import java.util.Objects;
 
@@ -16,11 +18,14 @@ public class Genre {
 	private long id;
 	private String titre;
 
-	// Defaut Constructor
-	public Genre() {
-	}
+	@ManyToOne
+	//(mappedBy = "genres")
+	@JoinColumn(name = "serie_id")
+	private Serie serie;
 
-	//Constructeurs avec paramètres
+	//Constructeurs
+public Genre(){}
+
 	public Genre(String titre) {
 		this.titre = titre;
 	}

@@ -1,6 +1,5 @@
 package fr.eni.tp.filmotheque.bo;
 
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -15,7 +14,7 @@ public class Serie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "Veuillez entrer un nom ou un titre pour votre série!")
+    @NotBlank(message = "Veuillez entrer un nom pour votre série!")
     @Size(min = 2, max = 255)
     private String name;
 
@@ -35,8 +34,6 @@ public class Serie {
     @Column(precision = 6, scale = 2)
     private BigDecimal popularity;
 
-    private String genres;
-
     private LocalDateTime firstAirDate;
 
     private LocalDateTime lastAirDate;
@@ -54,8 +51,29 @@ public class Serie {
     @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Season> seasons;
 
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Genre> genres;
+
     // Constructeur par défaut
     public Serie() {
+    }
+
+    public Serie(String backdrop, LocalDateTime dateCreated, LocalDateTime dateModified, LocalDateTime firstAirDate, List<Genre> genres, Integer id, LocalDateTime lastAirDate, String name, String overview, BigDecimal popularity, String poster, List<Season> seasons, String status, Integer tmdbId, BigDecimal vote) {
+        this.backdrop = backdrop;
+        this.dateCreated = dateCreated;
+        this.dateModified = dateModified;
+        this.firstAirDate = firstAirDate;
+        this.genres = genres;
+        this.id = id;
+        this.lastAirDate = lastAirDate;
+        this.name = name;
+        this.overview = overview;
+        this.popularity = popularity;
+        this.poster = poster;
+        this.seasons = seasons;
+        this.status = status;
+        this.tmdbId = tmdbId;
+        this.vote = vote;
     }
 
     public int getId() {
@@ -107,10 +125,10 @@ public class Serie {
         return this;
     }
 
-    public Serie setGenres(String genres) {
+    public Serie setGenres(List<Genre> genres) {
         this.genres = genres;
         return this;
-    }
+    } 
 
     public Serie setFirstAirDate(LocalDateTime firstAirDate) {
         this.firstAirDate = firstAirDate;
@@ -155,4 +173,9 @@ public class Serie {
         }
         return this;
     }
+
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
 }

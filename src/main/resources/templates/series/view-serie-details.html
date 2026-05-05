@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/base :: layout (~{::body},'serie-detail')}">
+<html xmlns:th="http://www.thymeleaf.org" 
+      th:replace="~{layouts/layout :: layout(~{::body}, 'Détails de la série')}">
 <head>
   <meta charset="UTF-8">
 <!--  <title th:text="${serie.name} + '|' + ${title}">Série | Default</title>-->
   <title>Détails de la Série</title>
-  <link rel="stylesheet" href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body>
-
-<div class="header"></div>
+<main>
+<body><h1>Hello</h1>
+  <div class="header"></div>
 <div class="flash flash-success" th:if="${successMessage}" th:text="${successMessage}"></div>
 <div class="flash flash-error" th:if="${errorMessage}" th:text="${errorMessage}"></div>
-<h1 th:text="${serie.titre}">Titre de la série</h1>
+<h1 th:text="${serie.name}">Titre de la série</h1>
 
 <section class="series-details">
   <div>
     <label>Résumé :</label>
-    <p th:text="${serie.overview}">Lorem ipsum</p>
+    <!--<p th:text="${serie.overview}">Lorem ipsum</p>
   </div>
   <div>
     <label>Année de diffusion :</label>
@@ -24,14 +25,13 @@
   </div>
   <div>
     <label>Genre :</label>
-    <p th:text="${serie.genre}"></p>
+    <p th:text="${serie.genre}"></p>-->
   </div>
   <div>
     <img th:src="@{/img/poster/{poster}(poster=${serie.poster})}" alt="poster">
   </div>
   <h2 th:text="${serie.name}">Nom série</h2>
   <div>User ratings: <span th:text="${serie.vote}">Note</span></div>
-  <div>Categorized in: <span th:text="${serie.genres}">Genres</span></div>
   <div>Serie status: <span th:text="${serie.status}">Statut</span></div>
   <div th:text="${serie.description}">Description</div>
   <div>
@@ -76,4 +76,5 @@
 </section>
 
 </body>
+</main>
 </html>
