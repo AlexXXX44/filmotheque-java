@@ -8,7 +8,7 @@
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <main>
-<body><h1>Hello</h1>
+<body>
   <div class="header"></div>
 <div class="flash flash-success" th:if="${successMessage}" th:text="${successMessage}"></div>
 <div class="flash flash-error" th:if="${errorMessage}" th:text="${errorMessage}"></div>
@@ -17,34 +17,34 @@
 <section class="series-details">
   <div>
     <label>Résumé :</label>
-    <!--<p th:text="${serie.overview}">Lorem ipsum</p>
+    <p th:utext="${serie.overview}">Lorem ipsum</p>
   </div>
   <div>
-    <label>Année de diffusion :</label>
-    <p th:text="${serie.annee}"></p>
+    <p>
+    <strong>Genres : </strong>
+    <span th:each="genre, iterStat : ${serie.genres}">
+        <span th:text="${genre.titre}"></span>
+        <th:block th:if="${!iterStat.last}">, </th:block>
+    </span>
+  </p>
   </div>
   <div>
-    <label>Genre :</label>
-    <p th:text="${serie.genre}"></p>-->
+    <img th:src="@{/img/posters/series/{poster}(poster=${serie.poster})}" alt="poster">
   </div>
-  <div>
-    <img th:src="@{/img/poster/{poster}(poster=${serie.poster})}" alt="poster">
-  </div>
-  <h2 th:text="${serie.name}">Nom série</h2>
+  
   <div>User ratings: <span th:text="${serie.vote}">Note</span></div>
   <div>Serie status: <span th:text="${serie.status}">Statut</span></div>
-  <div th:text="${serie.description}">Description</div>
+
   <div>
     Aired from
-    <span th:text="${#dates.format(serie.firstAirDate,'dd/MM/yyyy')}">Date de début de diffusion</span>
+    <!--<span th:text="${#dates.format(serie.firstAirDate,'dd/MM/yyyy')}">Date de début de diffusion</span>
     to
     <span th:text="${#dates.format(serie.lastAirDate,'dd/MM/yyyy')}">Date de fin de diffusion</span>
-  </div>
+  </div>-->
   <div th:utext="${#strings.replace(serie.overview, '\n', '<br/>')}">Résumé</div>
 
   <h2>Saisons</h2>
   <section class="seasons">
-    <h3>Seasons</h3>
     <div th:each="season : ${serie.seasons}">
       <img th:src="@{/img/posters/seasons/{poster}(poster=${season.poster})}" alt="poster">
       <article>
@@ -52,8 +52,7 @@
           <h4 th:text="${season.name}">Nom de la saison</h4>
           <h4>Season <span th:text="${season.number}">n°</span></h4>
           <div th:if="${season.overview}"
-          >Résumé</div>
-          <!--               th:text="{season.overview}"-->
+                         th:text="{season.overview}">Résumé de la saison</div>
           <div th:if="${season.episodes > 0}"></div>
         </div>
       </article>

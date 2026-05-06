@@ -18,13 +18,8 @@ public class Genre {
 	private long id;
 	private String titre;
 
-	@ManyToOne
-	//(mappedBy = "genres")
-	@JoinColumn(name = "serie_id")
-	private Serie serie;
-
 	//Constructeurs
-public Genre(){}
+	public Genre(){}
 
 	public Genre(String titre) {
 		this.titre = titre;

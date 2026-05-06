@@ -39,12 +39,12 @@ public class SeasonController {
         return "redirect:/films";
     }
 
-    public String creerSeason(@ModelAttribute("season") Season season, @PathVariable long serieId){}*/
+    public String creerSeason(@ModelAttribute("season") Season season, @PathVariable long serieId){}
 
     @PostMapping("/save")
     public String saveSeason(@ModelAttribute("season") Season season){
         seasonService.saveSeason(season);
 //        return "redirect:/Series/detail/" + season.getSerie().getId() + "/seasons";
         return "redirect:/series/" + season.getSerie().getId();
-    }
+    }*/
 }

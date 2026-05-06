@@ -1,11 +1,27 @@
 package fr.eni.tp.filmotheque.bo;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinTable;
+import java.util.ArrayList;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Serie {
@@ -18,24 +34,26 @@ public class Serie {
     @Size(min = 2, max = 255)
     private String name;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "overview", columnDefinition = "TEXT") // "TEXT" car un résumé peut être long
     private String overview;
 
     @NotNull
     @Pattern(regexp = "Canceled|Ended|Returning Series")
-    @Column(length = 50)
+    @Column(name = "status", length = 50)
     private String status;
 
     @DecimalMin("0.0")
     @DecimalMax("10.0")
-    @Column(precision = 3, scale = 1)
+    @Column(name = "vote", precision = 3, scale = 1)
     private BigDecimal vote;
 
-    @Column(precision = 6, scale = 2)
+    @Column(name = "popularity", precision = 6, scale = 2)
     private BigDecimal popularity;
 
+    @Column(name = "first_air_date")
     private LocalDateTime firstAirDate;
 
+    @Column(name = "last_air_date")
     private LocalDateTime lastAirDate;
 
     private String backdrop;
@@ -51,8 +69,17 @@ public class Serie {
     @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Season> seasons;
 
-    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Genre> genres;
+    @ManyToMany
+    @JoinTable(
+        name = "serie_genre",
+        joinColumns = @JoinColumn(name = "serie_id"), // La colonne pointant vers cette entité (Serie)
+        inverseJoinColumns = @JoinColumn(name = "genre_id") // La colonne pointant vers l'autre entité (Genre)
+    )
+    private List<Genre> genres = new ArrayList<>();
+
+    public List<Genre> getGenres() {
+        return genres;
+    }
 
     // Constructeur par défaut
     public Serie() {
@@ -63,8 +90,6 @@ public class Serie {
         this.dateCreated = dateCreated;
         this.dateModified = dateModified;
         this.firstAirDate = firstAirDate;
-        this.genres = genres;
-        this.id = id;
         this.lastAirDate = lastAirDate;
         this.name = name;
         this.overview = overview;
@@ -75,25 +100,49 @@ public class Serie {
         this.tmdbId = tmdbId;
         this.vote = vote;
     }
-
-    public int getId() {
-        return id;
-    }
-
+        
     public void setId(Integer id) {
         this.id = id;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getBackdrop() {
-        return backdrop;
+        return this.backdrop;
     }
 
     public String getPoster() {
         return poster;
+    }
+
+    public Integer getTmdbId() {
+        return tmdbId;
+    }
+    
+    public LocalDateTime getDateCreated() {
+        return dateCreated;
+    }
+
+    public LocalDateTime getDateModified() {
+        return dateModified;
+    }
+
+    public LocalDateTime getFirstAirDate() {
+        return this.firstAirDate;
+    }
+
+    public LocalDateTime getLastAirDate() {
+        return lastAirDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public BigDecimal getVote() {
+        return this.vote;
     }
 
     public List<Season> getSeasons() {
@@ -174,8 +223,8 @@ public class Serie {
         return this;
     }
 
-    public List<Genre> getGenres() {
-        return genres;
+    public String getOverview() {
+        return this.overview;
     }
 
 }
