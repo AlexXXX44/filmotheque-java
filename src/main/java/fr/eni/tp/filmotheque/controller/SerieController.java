@@ -1,12 +1,16 @@
 package fr.eni.tp.filmotheque.controller;
 
+import org.springframework.data.domain.Page;
+
 import fr.eni.tp.filmotheque.bll.SerieService;
 import fr.eni.tp.filmotheque.bo.Serie;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/series")
@@ -19,8 +23,24 @@ public class SerieController {
     }
 
     @GetMapping
-    public String afficherSeries(Model model){
-        model.addAttribute("series", serieService.findAll());
+    public String afficherSeries(
+    @RequestParam(name = "currentPage", defaultValue = "1") int currentPage,
+    @RequestParam(name = "size", defaultValue = "5") int size,
+    @RequestParam(name = "keyword", defaultValue = "") String keyword,
+    @RequestParam(name = "noGenre", required = false) Integer noGenre,
+    Model model) {
+
+        // On récupère une Page au lieu d'une List
+        Page<Serie> pageSeries = serieService.findFiltered(keyword, noGenre, currentPage, size);
+
+        model.addAttribute("series", pageSeries.getContent()); // Les données
+        model.addAttribute("totalPages", pageSeries.getTotalPages()); // Pour ton affichage de pagination
+        model.addAttribute("currentPage", currentPage);
+        
+            model.addAttribute("keyword", keyword); // Pour réafficher le mot-clé dans le champ de recherche
+            model.addAttribute("noGenre", noGenre); // Pour réafficher le genre sélectionné dans le menu déroulant
+            model.addAttribute("genres", serieService.findAllGenres()); // Pour remplir le menu dérou
+        //model.addAttribute("series", serieService.findAll());
         return "series/view-series";
     }
 

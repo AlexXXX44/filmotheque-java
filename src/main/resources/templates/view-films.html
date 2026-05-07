@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" data-th-replace="~{layouts/layout :: layout-filmotheque( 
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/layout :: layout(~{::body}, 'Détails de')}" lang="fr">
+<head>
+	<!--data-th-replace="~{layouts/layout :: layout-filmotheque( 
 					titrePage=~{:: title},
 					contenuPage=~{:: main},
 					ressourcesSupp=~{:: #ressources-css})}" lang="fr">
-
-<head>
+	-->
 	<!-- Films comme titre de page -->
 	<title>Films</title>
 	<!-- Ajout de CSS tp-film-table.css -->

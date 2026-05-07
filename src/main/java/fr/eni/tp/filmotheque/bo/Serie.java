@@ -100,9 +100,9 @@ public class Serie {
         this.tmdbId = tmdbId;
         this.vote = vote;
     }
-        
-    public void setId(Integer id) {
-        this.id = id;
+         
+    public Integer getId() {
+        return this.id;
     }
 
     public String getName() {

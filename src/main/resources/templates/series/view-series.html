@@ -1,17 +1,43 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" th:href="@{/css/series.css}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/layout :: layout(~{::body}, 'Détails de')}" lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Liste des séries</title>
+	<!--data-th-replace="~{layouts/layout :: layout-filmotheque( 
+					titrePage=~{:: title},
+					contenuPage=~{:: main},
+					ressourcesSupp=~{:: #ressources-css})}" lang="fr">
+	-->
+	<title>Liste des séries</title>
 </head>
 <body>
+
+        <!-- Formulaire de recherche (GET) -->
+<form th:action="@{/series}" method="get" class="row g-3 mb-4">
+    <div class="col-md-6">
+            <label>
+                <input class="form-control" type="search"
+                 name="keyword" th:value="${keyword}" placeholder="Rechercher...">
+            </label>
+        </div>    
+                <select name="genreId">
+                    <option value="">Tous les genres</option>
+                                <option th:each="g : ${genres}" th:value="${g.id}"
+                                        th:text="${g.titre}" th:selected="${genre?.id == genreId}">
+                        </option>
+                    </option>
+                </select>
+            </label>
+        </div>
+
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary w-100">Rechercher</button>
+        </div>
+    </form>
 
 <section class="series-list">
     <div data-th-each="serie : ${series}">
         <article>
             <a th:href="@{/series/{id}(id=${serie.id})}"
-               th:tiled="'View series details | ' + ${#lists.size(serie.seasons)} + ${#strings.capitalize(serie.name)}">
+               th:title="'View series details | ' + ${#lists.size(serie.seasons)} + ${#strings.capitalize(serie.name)}">
                 <img th:src="@{/img/posters/series/{poster}(poster=${serie.poster})}"
                      th:alt="${serie.name}"/>
             </a>
