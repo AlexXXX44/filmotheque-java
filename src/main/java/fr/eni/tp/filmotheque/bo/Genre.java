@@ -39,7 +39,7 @@ public class Genre {
 	}
 
 	public String getTitre() {
-		return titre;
+		return this.titre;
 	}
 
 	public void setTitre(String titre) {

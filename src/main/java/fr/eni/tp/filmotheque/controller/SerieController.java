@@ -4,11 +4,15 @@ import org.springframework.data.domain.Page;
 
 import fr.eni.tp.filmotheque.bll.SerieService;
 import fr.eni.tp.filmotheque.bo.Serie;
+import jakarta.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,12 +26,28 @@ public class SerieController {
         this.serieService = serieService;
     }
 
+    @PostMapping("/save")
+    public String sauvegarderSerie(
+            @Valid @ModelAttribute("serie") Serie serie, 
+            BindingResult result, 
+            Model model) {
+
+        if (result.hasErrors()) {
+            // Si erreurs, on recharge la liste des genres et on renvoie au formulaire
+            model.addAttribute("allGenres", serieService.findAllGenres());
+            return "series/view-serie-form";
+        }
+
+        serieService.saveSerie(serie);
+        return "redirect:/series";
+    }
+
     @GetMapping("/create")
     public String afficherFormulaireCreation(Model model) {
         model.addAttribute("serie", new Serie());
         // On récupère tous les genres pour les proposer dans le formulaire
         model.addAttribute("allGenres", serieService.findAllGenres()); 
-        return "series/view-serie-create";
+        return "series/view-serie-form";
     }
     
     @GetMapping
