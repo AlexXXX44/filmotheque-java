@@ -9,8 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 @Repository
-public interface SerieRepository extends JpaRepository<Serie, Long> {
-    
+public interface SerieRepository extends JpaRepository<Serie, Long> {    
     // Une requête qui filtre par titre (contenant le mot-clé) 
     // ET par l'ID du genre (si présent dans la liste des genres)
     @Query("SELECT DISTINCT s FROM Serie s " +

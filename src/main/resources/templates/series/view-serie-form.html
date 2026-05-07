@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html th:replace="~{layouts/layout :: layout(~{::main}, 'Ajouter une série')}" xmlns:th="http://www.thymeleaf.org">
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        max-width: 400px;
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="text"], textarea {
+        width: 100%;
+        padding: 0.5em;
+    }
+    button {
+        align-self: flex-start;
+        padding: 0.5em 1em;
+    }
+    .genres-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 10px 0;
+    }
+    .genre-item {
+    display: flex;
+    align-items: center;
+    }
+    .genre-item input {
+    margin-right: 5px;
+    }
+</style>
+<body>
+    <main>
+        <h2>Ajouter une nouvelle série</h2>
+
+        <form th:action="@{/series/save}" th:object="${serie}" method="post">
+            
+            <div>
+                <label><strong>Genres :</strong></label>
+                <div th:each="genre : ${allGenres}">
+                    <input type="checkbox" 
+                        th:field="*{genres}" 
+                        th:value="${genre.id}" 
+                        th:id="${'genre-' + genre.id}" />
+                    <label th:for="${'genre-' + genre.id}" th:text="${genre.libelle}"></label>
+                </div>
+            </div>
+            <div>
+                <label>Titre de la série :</label>
+                <input type="text" th:field="*{titre}" required/>
+            </div>
+
+            <div>
+                <label>Lien du Poster :</label>
+                <input type="text" th:field="*{poster}" required/>
+            </div>
+
+            <div>
+                <label>Résumé (Overview) :</label>
+                <textarea th:field="*{overview}" required></textarea>
+            </div>
+
+            <button type="submit">Enregistrer la série</button>
+        </form>
+        
+        <a th:href="@{/series}">Retour à la liste</a>
+    </main>
+</body>
+</html>
+</form>
+</body>
+</html>

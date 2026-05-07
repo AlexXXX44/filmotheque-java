@@ -51,7 +51,7 @@ public class SerieService {
     /**
      * Enregistrer ou mettre à jour une série.
      */
-    public Serie saveSerie(Serie serie){
+    public Serie saveSerie(Serie serie) {
         return serieRepository.save(serie);
     }
 

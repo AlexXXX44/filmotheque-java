@@ -22,6 +22,14 @@ public class SerieController {
         this.serieService = serieService;
     }
 
+    @GetMapping("/create")
+    public String afficherFormulaireCreation(Model model) {
+        model.addAttribute("serie", new Serie());
+        // On récupère tous les genres pour les proposer dans le formulaire
+        model.addAttribute("allGenres", serieService.findAllGenres()); 
+        return "series/view-serie-create";
+    }
+    
     @GetMapping
     public String afficherSeries(
     @RequestParam(name = "currentPage", defaultValue = "1") int currentPage,
