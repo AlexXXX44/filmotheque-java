@@ -14,7 +14,6 @@
 </head>
 <body>
 	<main>
-		<form>
 			<h1>Création d'un film [En cours de construction]</h1>
 			<ul class="flex-outer">
 				<li>
@@ -25,7 +24,23 @@
 				</select>
 				</li>
 			</ul>
-		</form>
+		<form th:action="@{/films/enregistrer}" th:object="${film}" method="post">
+    <label>Titre :</label>
+    <input type="text" th:field="*{titre}" />
+    <span th:if="${#fields.hasErrors('titre')}" th:errors="*{titre}" style="color:red;"></span>
+
+    <label>Genres :</label>
+    <div th:each="genre : ${allGenres}">
+        <input type="checkbox" th:field="*{genres}" th:value="${genre.id}" />
+        <label th:text="${genre.titre}"></label>
+    </div>
+
+    <label>Résumé :</label>
+    <textarea th:field="*{overview}"></textarea>
+    <span th:if="${#fields.hasErrors('overview')}" th:errors="*{overview}" style="color:red;"></span>
+
+    <button type="submit">Enregistrer le film</button>
+</form>
 	</main>
 </body>
 </html>

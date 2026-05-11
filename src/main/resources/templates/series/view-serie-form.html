@@ -48,7 +48,7 @@
                     <label th:for="${'genre-' + genre.id}" th:text="${genre.titre}"></label>
                 </div>
             </div>
-            <form th:action="@{/series/save}" th:object="${serie}" method="post">
+            
     <div>
         <label>Titre :</label>
         <input type="text" th:field="*{name}" />

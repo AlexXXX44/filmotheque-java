@@ -27,9 +27,13 @@ public class Film {
             inverseJoinColumns = @JoinColumn(name = "acteur_id")
     )
     private List<Participant> acteurs;
-    @ManyToOne
-    @JoinColumn(name = "genre_id")
-    private Genre genre;
+    //@JoinColumn(name = "genre_id")
+    @ManyToMany
+    @JoinTable( name = "film_genre",
+		        joinColumns = @JoinColumn(name = "film_id"), // La colonne pointant vers cette entité (Film)
+        	    inverseJoinColumns = @JoinColumn(name = "genre_id") // La colonne pointant vers l'autre entité (Genre)
+    )
+    private List<Genre> genres = new ArrayList<>();
     @OneToMany(mappedBy = "film")
     private List<Avis> avis;
 
@@ -86,12 +90,12 @@ public class Film {
         return acteurs;
     }
 
-    public Genre getGenre() {
-        return genre;
+    public List<Genre> getGenres() {
+        return genres;
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 
     public List<Avis> getAvis() {
@@ -119,8 +123,8 @@ public class Film {
         builder.append(realisateur);
         builder.append("\n\tacteurs : ");
         builder.append(acteurs);
-        builder.append("\n\tgenre : ");
-        builder.append(genre);
+        builder.append("\n\tgenres : ");
+        builder.append(genres);
         builder.append("\n\tAvis : ");
         builder.append(avis);
         return builder.toString();

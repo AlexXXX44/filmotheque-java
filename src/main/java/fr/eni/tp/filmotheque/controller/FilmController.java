@@ -3,8 +3,11 @@ package fr.eni.tp.filmotheque.controller;
 import java.util.List;
 
 import fr.eni.tp.filmotheque.bo.*;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +27,6 @@ public class FilmController {
 
 	@GetMapping
 	public String afficherFilms(
-//			@ModelAttribute("films")
 			Model model) {
 		System.out.println("Tous les films : ");
 		List<Film> films = filmService.consulterFilms();
@@ -59,6 +61,10 @@ public class FilmController {
 	public String creerFilm(Model model, @ModelAttribute("membreEnSession") Membre membreEnSession) {
 		if (membreEnSession != null && membreEnSession.getId() >= 1 && membreEnSession.isAdmin()) {
 				// Ajout de l'instance dans le modèle
+			model.addAttribute("membreEnSession", membreEnSession);
+			model.addAttribute("genresEnSession", chargerGenres());
+			model.addAttribute("participantsEnSession", chargerParticipants());
+			model.addAttribute("allGenres", filmService.consulterGenres());	
 			model.addAttribute("film", new Film());
             return "view-film-form"; //return "film/creation";
 		} else {
@@ -67,7 +73,18 @@ public class FilmController {
 		}
 	}
 
-//	ette méthode pour gérer le cas où membreEnSession n'existe pas
+	@PostMapping("/enregistrer")
+	public String enregistrerFilm(@Valid @ModelAttribute("film") Film film, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			// En cas d'erreur (ex: résumé vide), on doit impérativement 
+			// recharger la liste des genres avant de renvoyer le formulaire
+			model.addAttribute("allGenres", filmService.consulterGenres());
+			return "view-film-form";
+		}
+		filmService.save(film);
+		return "redirect:/films";
+	}
+	// Cette méthode pour gérer le cas où membreEnSession n'existe pas
 	@ExceptionHandler(HttpSessionRequiredException.class)
 	public String handleSessionRequiredException() {
 		return "redirect:/login";

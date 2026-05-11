@@ -27,4 +27,6 @@ public interface FilmService {
 	void publierAvis(Avis avis, long idFilm);
 
 	void creerFilm(Film film);
+
+    public void save(Film film);
 }
