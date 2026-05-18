@@ -89,4 +89,10 @@ public class FilmServiceImpl implements FilmService {
     public void creerFilm(Film film) {
 
     }
+
+    @Override
+    public void save(Film film) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    }
 }

@@ -46,7 +46,7 @@ public class InitialiseurDonnees {
                     "Le film raconte l'histoire d'un milliardaire et son équipe de généticiens parvenant à ramener à la vie des dinosaures grâce au clonage.",
                     "jurassic.png");
 
-            jurassic.setGenre(genres.get(1)); // Science-fiction
+            //jurassic.setGenre(genres.get(1)); // Science-fiction
             jurassic.setRealisateur(spielberg);
             jurassic.getActeurs().addAll(List.of(attenborough, goldblum));
 
@@ -55,6 +55,10 @@ public class InitialiseurDonnees {
             // --- AVIS ---
             avisRepository.save(new Avis(4, "On rit du début à la fin", jurassic, membre));
             avisRepository.save(new Avis(5, "Drôle du début à la fin", jurassic, membre));
+
+            //(2, "Citadel", 2023, 90,
+            //        "Une mère célibataire doit protéger sa fille contre une menace invisible qui s'attaque aux personnes vulnérables.",
+            //        "citadel.png");
         };
     }
 }

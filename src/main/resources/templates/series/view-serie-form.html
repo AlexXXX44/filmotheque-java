@@ -37,7 +37,21 @@
         <h2>Ajouter une nouvelle série</h2>
 
         <form th:action="@{/series/save}" th:object="${serie}" method="post">
-            
+            <div th:if="${#fields.hasAnyErrors()}" style="background-color: #fee2e2; color: #991b1b; padding: 15px; margin-bottom: 20px; border-radius: 5px;">
+            <ul>
+                <li th:each="err : ${#fields.detailedErrors()}">
+                    <strong th:text="${err.fieldName}"></strong> : <span th:text="${err.message}"></span>
+                </li>
+            </ul>
+        </div>
+                <div>
+                    <label>Statut :</label>
+                    <input type="text" th:field="*{status}" />
+                </div>
+                            <div>
+                                <label>Lien du poster :</label>
+                                <input type="text" th:field="*{poster}" />
+                            </div>
             <div>
                 <label><strong>Genres :</strong></label>
                 <div th:each="genre : ${allGenres}">
