@@ -73,35 +73,44 @@ public class FilmController {
 		}
 	}
 
-	@PostMapping("/enregistrer")
-	public String enregistrerFilm(@Valid @ModelAttribute("film") Film film, BindingResult result, Model model) {
-		if (result.hasErrors()) {
-			// En cas d'erreur (ex: résumé vide), on doit impérativement 
-			// recharger la liste des genres avant de renvoyer le formulaire
-			model.addAttribute("allGenres", filmService.consulterGenres());
-			return "view-film-form";
+	@GetMapping("/creer")
+	public String creerFilm(Model model, @ModelAttribute("membreEnSession") Membre membreEnSession) {
+		// 1. Vérification de sécurité d'après ton fragment existant
+		if (membreEnSession != null && membreEnSession.getId() >= 1 && membreEnSession.isAdmin()) {
+			
+			model.addAttribute("film", new Film());
+			// On récupère les genres pour les afficher en checkboxes
+			model.addAttribute("allGenres", serieService.findAllGenres()); 
+			
+			return "view-film-form"; 
+		} else {
+			// Redirection vers la liste si l'utilisateur n'est pas Admin
+			return "redirect:/films";
 		}
-		filmService.save(film);
-		return "redirect:/films";
-	}
-	// Cette méthode pour gérer le cas où membreEnSession n'existe pas
-	@ExceptionHandler(HttpSessionRequiredException.class)
-	public String handleSessionRequiredException() {
-		return "redirect:/login";
 	}
 
-	// Création d'un nouveau film
-	@PostMapping("/creer")
-	public String creerFilm(@ModelAttribute("film") Film film,
-						@ModelAttribute("membreEnSession") Membre membreEnSession) {
-		if (membreEnSession != null && membreEnSession.getId() > 1 && membreEnSession.isAdmin()) {
-			System.out.println(film);
-			filmService.creerFilm(film);
-			return "redirect:/films";
-		} else {
-			System.out.println("Aucun membre en session");
+	@PostMapping("/enregistrer")
+	public String enregistrerFilm(
+			@Valid @ModelAttribute("film") Film film, 
+			BindingResult result, 
+			Model model,
+			@ModelAttribute("membreEnSession") Membre membreEnSession) {
+		
+		// Sécurité également à la soumission
+		if (membreEnSession == null || !membreEnSession.isAdmin()) {
 			return "redirect:/films";
 		}
+
+		// 2. Si la validation échoue (ex: résumé vide ou durée manquante)
+		if (result.hasErrors()) {
+			// TRÈS IMPORTANT : Recharger la liste des genres pour ne pas qu'elle disparaisse à l'écran
+			model.addAttribute("allGenres", serieService.findAllGenres());
+			return "view-film-form";
+		}
+
+		// 3. Si tout est OK, sauvegarde et redirection
+		filmService.saveFilm(film);
+		return "redirect:/films";
 	}
 
 	// Injection en session des listes représentant les participants
@@ -110,7 +119,4 @@ public class FilmController {
 		System.out.println("Chargement en Session - PARTICIPANTS");
 		return filmService.consulterParticipants();
 	}
-
-	
-
 }

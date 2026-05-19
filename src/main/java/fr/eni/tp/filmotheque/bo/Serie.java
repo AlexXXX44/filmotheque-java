@@ -71,9 +71,9 @@ public class Serie {
 
     @ManyToMany
     @JoinTable(
-        name = "serie_genre",
-        joinColumns = @JoinColumn(name = "serie_id"), // La colonne pointant vers cette entité (Serie)
-        inverseJoinColumns = @JoinColumn(name = "genre_id") // La colonne pointant vers l'autre entité (Genre)
+        name = "serie_genre", // Crée une table dédiée aux liaisons
+        joinColumns = @JoinColumn(name = "id_serie"),
+        inverseJoinColumns = @JoinColumn(name = "id_genre")
     )
     private List<Genre> genres = new ArrayList<>();
 

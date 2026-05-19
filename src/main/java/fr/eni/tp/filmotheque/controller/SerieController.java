@@ -27,13 +27,14 @@ public class SerieController {
     }
 
     @PostMapping("/save")
-    public String sauvegarderSerie(
-            @Valid @ModelAttribute("serie") Serie serie, 
-            BindingResult result, 
-            Model model) {
+    public String sauvegarderSerie(@Valid @ModelAttribute("serie") Serie serie, BindingResult result, Model model) {
+        
+        // Au cas où le formulaire n'envoie pas le statut, on le force ici pour passer la validation
+        if (serie.getStatus() == null) {
+            serie.setStatus("Returning Series");
+        }
 
         if (result.hasErrors()) {
-            // Si erreurs, on recharge la liste des genres et on renvoie au formulaire
             model.addAttribute("allGenres", serieService.findAllGenres());
             return "series/view-serie-form";
         }

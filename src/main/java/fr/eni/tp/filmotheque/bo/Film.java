@@ -1,6 +1,10 @@
 package fr.eni.tp.filmotheque.bo;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +14,28 @@ import java.util.Objects;
 public class Film {
 
     @Id
-    private long id;
-    private String titre;
-    private int annee;
-    private int duree;
-    private String affiche;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @NotBlank(message = "Le titre du film est obligatoire")
+    @Size(min = 2, max = 255, message = "Le titre doit faire entre 2 et 255 caractères")
+    private String titre; // Ou 'name' selon tes préférences, reste cohérent avec tes getters/setters
+
+    @NotBlank(message = "Le résumé du film est obligatoire")
+    @Column(name = "synopsis", columnDefinition = "TEXT")
     private String synopsis;
+
+    @NotBlank(message = "Le lien du poster est obligatoire")
+    private String poster;
+
+    @NotNull(message = "La durée est obligatoire")
+    @Min(value = 1, message = "La durée doit être supérieure à 0 minute")
+    private Integer duree; // Propriété spécifique aux films !
+
+    @NotNull(message = "L'année de sortie est obligatoire")
+    @Min(value = 1888, message = "L'année de sortie doit être supérieure ou égale à 1888") // Le premier film date de 1888
+    private Integer annee;
+
     @ManyToOne
     @JoinColumn(name = "realisateur_id")
     private Participant realisateur;
@@ -27,7 +47,7 @@ public class Film {
             inverseJoinColumns = @JoinColumn(name = "acteur_id")
     )
     private List<Participant> acteurs;
-    //@JoinColumn(name = "genre_id")
+    
     @ManyToMany
     @JoinTable( name = "film_genre",
 		        joinColumns = @JoinColumn(name = "film_id"), // La colonne pointant vers cette entité (Film)
@@ -42,19 +62,20 @@ public class Film {
         avis = new ArrayList<>();
     }
 
-    public Film(String titre, int annee, int duree, String affiche, String synopsis) {
+    public Film(String titre, int annee, int duree, String affiche, String synopsis, List<Genre> genres) {
         this.titre = titre;
         this.annee = annee;
         this.duree = duree;
         this.affiche = affiche;
         this.synopsis = synopsis;
+        this.genres = genres;
 
         acteurs = new ArrayList<>();
         avis = new ArrayList<>();
     }
 
-    public Film(int id, String titre, int annee, int duree, String synopsis, String affiche) {
-        this(titre, annee, duree, synopsis, affiche);
+    public Film(int id, String titre, int annee, int duree, String synopsis, String affiche, List<Genre> genres) {
+        this(titre, annee, duree, synopsis, affiche, genres);
         this.id = id;
     }
 

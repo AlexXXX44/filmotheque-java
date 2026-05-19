@@ -36,49 +36,39 @@
     <main>
         <h2>Ajouter une nouvelle série</h2>
 
-        <form th:action="@{/series/save}" th:object="${serie}" method="post">
-            <div th:if="${#fields.hasAnyErrors()}" style="background-color: #fee2e2; color: #991b1b; padding: 15px; margin-bottom: 20px; border-radius: 5px;">
-            <ul>
-                <li th:each="err : ${#fields.detailedErrors()}">
-                    <strong th:text="${err.fieldName}"></strong> : <span th:text="${err.message}"></span>
-                </li>
-            </ul>
+    <form th:action="@{/series/save}" th:object="${serie}" method="post">
+        
+        <div th:if="${#fields.hasAnyErrors()}" style="color:red;">
+            <ul><li th:each="err : ${#fields.allErrors()}" th:text="${err}"></li></ul>
         </div>
-                <div>
-                    <label>Statut :</label>
-                    <input type="text" th:field="*{status}" />
-                </div>
-                            <div>
-                                <label>Lien du poster :</label>
-                                <input type="text" th:field="*{poster}" />
-                            </div>
-            <div>
-                <label><strong>Genres :</strong></label>
-                <div th:each="genre : ${allGenres}">
-                    <input type="checkbox" 
-                        th:field="*{genres}" 
-                        th:value="${genre.id}" 
-                        th:id="${'genre-' + genre.id}" />
-                    <label th:for="${'genre-' + genre.id}" th:text="${genre.titre}"></label>
-                </div>
+
+        <div>
+            <label>Nom de la série :</label>
+            <input type="text" th:field="*{name}" />
+        </div>
+
+        <div>
+            <label>Genres :</label>
+            <div th:each="genre : ${allGenres}">
+                <input type="checkbox" th:field="*{genres}" th:value="${genre.id}" />
+                <label th:text="${genre.titre}"></label>
             </div>
-            
-    <div>
-        <label>Titre :</label>
-        <input type="text" th:field="*{name}" />
-        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;"></span>
-    </div>
+        </div>
 
-    <div>
-        <label>Résumé :</label>
-        <textarea th:field="*{overview}"></textarea>
-        <span th:if="${#fields.hasErrors('overview')}" th:errors="*{overview}" style="color:red;"></span>
-    </div>
-    
-    <div th:if="${#fields.hasErrors('genres')}" th:errors="*{genres}" style="color:red;"></div>
+        <div>
+            <label>Résumé :</label>
+            <textarea th:field="*{overview}"></textarea>
+        </div>
 
-           <button type="submit" onclick="console.log('Tentative d envoi...')">Enregistrer</button>
-</form>
+        <div>
+            <label>Lien du poster :</label>
+            <input type="text" th:field="*{poster}" />
+        </div>
+
+        <input type="hidden" th:field="*{status}" value="Returning Series" />
+
+        <button type="submit">Enregistrer la série</button>
+    </form>
         
         <a th:href="@{/series}">Retour à la liste</a>
     </main>
