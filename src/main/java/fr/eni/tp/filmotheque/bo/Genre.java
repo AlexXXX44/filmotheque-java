@@ -17,17 +17,34 @@ public class Genre {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String titre;
+	private Film film; // Propriété de navigation vers Film (optionnelle, selon tes besoins)
 
 	//Constructeurs
 	public Genre(){}
+
+
+	public Genre(long id, String titre, Film film) {
+		this.id = id;
+		this.titre = titre;
+		this.film = film;
+	}
 
 	public Genre(String titre) {
 		this.titre = titre;
 	}
 
+	public Genre(String titre, Film film) {
+		this.titre = titre;
+		this.film = film;
+	}
+
 	public Genre(long id, String titre) {
 		this.id = id;
 		this.titre = titre;
+	}
+
+	public Film getFilm() {
+		return film;
 	}
 	
 	public long getId() {

@@ -72,23 +72,7 @@ public class FilmController {
 			return "redirect:/films";
 		}
 	}
-
-	@GetMapping("/creer")
-	public String creerFilm(Model model, @ModelAttribute("membreEnSession") Membre membreEnSession) {
-		// 1. Vérification de sécurité d'après ton fragment existant
-		if (membreEnSession != null && membreEnSession.getId() >= 1 && membreEnSession.isAdmin()) {
-			
-			model.addAttribute("film", new Film());
-			// On récupère les genres pour les afficher en checkboxes
-			model.addAttribute("allGenres", serieService.findAllGenres()); 
-			
-			return "view-film-form"; 
-		} else {
-			// Redirection vers la liste si l'utilisateur n'est pas Admin
-			return "redirect:/films";
-		}
-	}
-
+	
 	@PostMapping("/enregistrer")
 	public String enregistrerFilm(
 			@Valid @ModelAttribute("film") Film film, 
@@ -104,12 +88,12 @@ public class FilmController {
 		// 2. Si la validation échoue (ex: résumé vide ou durée manquante)
 		if (result.hasErrors()) {
 			// TRÈS IMPORTANT : Recharger la liste des genres pour ne pas qu'elle disparaisse à l'écran
-			model.addAttribute("allGenres", serieService.findAllGenres());
+			model.addAttribute("allGenres", filmService.consulterGenres());
 			return "view-film-form";
 		}
 
 		// 3. Si tout est OK, sauvegarde et redirection
-		filmService.saveFilm(film);
+		filmService.save(film);
 		return "redirect:/films";
 	}
 

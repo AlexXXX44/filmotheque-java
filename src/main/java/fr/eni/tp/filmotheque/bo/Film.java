@@ -26,7 +26,7 @@ public class Film {
     private String synopsis;
 
     @NotBlank(message = "Le lien du poster est obligatoire")
-    private String poster;
+    private String affiche;
 
     @NotNull(message = "La durée est obligatoire")
     @Min(value = 1, message = "La durée doit être supérieure à 0 minute")
@@ -62,28 +62,37 @@ public class Film {
         avis = new ArrayList<>();
     }
 
+    public Film(String titre, int annee, int duree, String synopsis, String affiche, Genre genre) {
+        this(titre, annee, duree, synopsis, affiche, List.of(genre));
+        this.genres = List.of(genre);
+        this.acteurs = new ArrayList<>();
+        this.avis = new ArrayList<>();
+        this.synopsis = synopsis;
+        this.affiche = affiche;
+        this.duree = duree;
+        this.annee = annee;
+        this.titre = titre;
+    }
+
     public Film(String titre, int annee, int duree, String affiche, String synopsis, List<Genre> genres) {
         this.titre = titre;
         this.annee = annee;
         this.duree = duree;
         this.affiche = affiche;
         this.synopsis = synopsis;
-        this.genres = genres;
-
+        
+        getGenres().addAll(genres);
+        genres.forEach(g -> g.getFilms().add(this)); // Associer les deux côtés de la relation
+        genres = new ArrayList<>();
         acteurs = new ArrayList<>();
         avis = new ArrayList<>();
     }
 
-    public Film(int id, String titre, int annee, int duree, String synopsis, String affiche, List<Genre> genres) {
-        this(titre, annee, duree, synopsis, affiche, genres);
-        this.id = id;
-    }
-
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -95,7 +104,7 @@ public class Film {
         this.titre = titre;
     }
 
-    public int getAnnee() {
+    public Integer getAnnee() {
         return annee;
     }
 
@@ -127,6 +136,22 @@ public class Film {
         this.avis = avis;
     }
 
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
+    }
+
+    public String getAffiche() {
+        return affiche;
+    }
+
+    public void setAffiche(String affiche) {
+        this.affiche = affiche;
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
@@ -149,30 +174,5 @@ public class Film {
         builder.append("\n\tAvis : ");
         builder.append(avis);
         return builder.toString();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Film other = (Film) obj;
-        return id == other.id;
-    }
-
-    public String getAffiche() {
-        return affiche;
-    }
-
-    public void setAffiche(String affiche) {
-        this.affiche = affiche;
     }
 }

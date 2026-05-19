@@ -148,9 +148,8 @@ public class FilmServiceBouchon implements FilmService {
         // Création de la liste de films
         // 9 films
         Film jurassicPark = new Film(indexFilms++, "Jurassic Park", 1993, 128,
-                "",
-                "Le film raconte l'histoire d'un milliardaire et son équipe de généticiens parvenant à ramener à la vie des dinosaures grâce au clonage.");
-        //jurassicPark.setGenre(lstGenres.get(1));
+                "Le film raconte l'histoire d'un milliardaire et son équipe de généticiens parvenant à ramener à la vie des dinosaures grâce au clonage.", "");
+        
         jurassicPark.setRealisateur(consulterParticipantParId(1));
         // Associer les acteurs
         jurassicPark.getActeurs().add(consulterParticipantParId(4));
@@ -159,8 +158,8 @@ public class FilmServiceBouchon implements FilmService {
         lstFilms.add(jurassicPark);
 
         Film leMondePerdu = new Film(indexFilms++, "Le Monde Perdu", 1997, 120,
-                "", "Suite de Jurassic Park, 4 ans après");
-        //leMondePerdu.setGenre(lstGenres.get(1));
+                "Suite de Jurassic Park, 4 ans après", "");
+        
         leMondePerdu.setRealisateur(consulterParticipantParId(1));
         // Associer les acteurs
         leMondePerdu.getActeurs().add(consulterParticipantParId(5));
@@ -169,8 +168,8 @@ public class FilmServiceBouchon implements FilmService {
         lstFilms.add(leMondePerdu);
 
         Film jurassicPark3 = new Film(indexFilms++, "Jurassic Park 3", 2003, 128,
-                "", "Suite de Jurassic Park, 8 ans après");
-        //jurassicPark3.setGenre(lstGenres.get(1));
+                "Suite de Jurassic Park, 8 ans après", "");
+        
         jurassicPark3.setRealisateur(consulterParticipantParId(16));
         // Associer les acteurs
         jurassicPark3.getActeurs().add(consulterParticipantParId(12));
@@ -179,8 +178,8 @@ public class FilmServiceBouchon implements FilmService {
         lstFilms.add(jurassicPark3);
 
         Film jurassicWorld = new Film(indexFilms++, "Jurassic World", 2015, 120,
-                "", "Suite de Jurassic Park");
-        //jurassicWorld.setGenre(lstGenres.get(1));
+                "Suite de Jurassic Park", "");
+        jurassicWorld.setGenre(lstGenres.get(1));
         jurassicWorld.setRealisateur(consulterParticipantParId(17));
         // Associer les acteurs
         jurassicWorld.getActeurs().add(consulterParticipantParId(10));
@@ -190,9 +189,8 @@ public class FilmServiceBouchon implements FilmService {
         lstFilms.add(jurassicWorld);
 
         Film fallenKingdom = new Film(indexFilms++, "Jurassic World : Fallen Kingdom", 2018, 120,
-                "",
-                "Suite de Jurassic World");
-        //fallenKingdom.setGenre(lstGenres.get(1));
+                "Suite de Jurassic World", "");
+        fallenKingdom.setGenre(lstGenres.get(1));
         fallenKingdom.setRealisateur(consulterParticipantParId(18));
         // Associer les acteurs
         fallenKingdom.getActeurs().add(consulterParticipantParId(5));
@@ -202,9 +200,8 @@ public class FilmServiceBouchon implements FilmService {
         lstFilms.add(fallenKingdom);
 
         Film renaissance = new Film(indexFilms++, "Jurassic World : Renaissance", 2025, 120,
-                "",
-                "Suite de Jurassic World avec de nouveaux acteurs");
-        //renaissance.setGenre(lstGenres.get(1));
+                "Suite de Jurassic World avec de nouveaux acteurs", "");
+        renaissance.setGenre(lstGenres.get(1));
         renaissance.setRealisateur(consulterParticipantParId(19));
         // Associer les acteurs
         renaissance.getActeurs().add(consulterParticipantParId(20));
@@ -213,9 +210,8 @@ public class FilmServiceBouchon implements FilmService {
         lstFilms.add(renaissance);
 
         Film leMondeDapres = new Film(indexFilms++, "Jurassic World : Le Monde D'après", 2022, 120,
-                "",
-                "Suite de Jurassic World Fallen Kingdom");
-        //leMondeDapres.setGenre(lstGenres.get(1));
+                "Suite de Jurassic World Fallen Kingdom", "");
+        leMondeDapres.setGenre(lstGenres.get(1));
         leMondeDapres.setRealisateur(consulterParticipantParId(17));
         // Associer les acteurs
         leMondeDapres.getActeurs().add(consulterParticipantParId(5));
@@ -230,7 +226,7 @@ public class FilmServiceBouchon implements FilmService {
         Film theFly = new Film(indexFilms++, "The Fly", 1986, 95,
                 "Il s'agit de l'adaptation cinématographique de la nouvelle éponyme de l'auteur George Langelaan.",
                         "la_mouche.png");
-        //theFly.setGenre(lstGenres.get(1));
+        theFly.setGenre(lstGenres.get(1));
         theFly.setRealisateur(consulterParticipantParId(2));
         // Associer les acteurs
         theFly.getActeurs().add(consulterParticipantParId(5));
@@ -241,7 +237,7 @@ public class FilmServiceBouchon implements FilmService {
         Film theBFG = new Film(indexFilms++, "The BFG", 2016, 117,
                 "Le Bon Gros Géant est un géant bien différent des autres habitants du Pays des Géants.",
                         "le_BGG.png");
-        //theBFG.setGenre(lstGenres.get(4));
+        theBFG.setGenre(lstGenres.get(1));
         theBFG.setRealisateur(consulterParticipantParId(1));
         // Associer les acteurs
         theBFG.getActeurs().add(consulterParticipantParId(7));
@@ -252,7 +248,7 @@ public class FilmServiceBouchon implements FilmService {
         Film bienvenueChezLesChtis = new Film(indexFilms++, "Bienvenue chez les Ch'tis", 2008, 106,
                 "Philippe Abrams est directeur de la poste de Salon-de-Provence. Il est marié à Julie, dont le caractère dépressif lui rend la vie impossible. Pour lui faire plaisir, Philippe fraude afin d'obtenir une mutation sur la Côte d'Azur. Mais il est démasqué: il sera muté à Bergues, petite ville du Nord.",
                         "bienvenue_chez_les_chtis.png");
-        //bienvenueChezLesChtis.setGenre(lstGenres.get(4));
+        bienvenueChezLesChtis.setGenre(lstGenres.get(4));
         bienvenueChezLesChtis.setRealisateur(consulterParticipantParId(3));
         // Associer les acteurs
         bienvenueChezLesChtis.getActeurs().add(consulterParticipantParId(3));
@@ -269,7 +265,7 @@ public class FilmServiceBouchon implements FilmService {
 
         Film partie1 = new Film(indexFilms++, "Retour vers le futur", 0, 0,
                 "Oeuvre originale", "retour vers le futur");
-        //partie1.setGenre(lstGenres.get(1));
+        partie1.setGenre(lstGenres.get(1));
         partie1.setRealisateur(consulterParticipantParId(22));
         //Associer les acteurs
         partie1.getActeurs().add(consulterParticipantParId(23));

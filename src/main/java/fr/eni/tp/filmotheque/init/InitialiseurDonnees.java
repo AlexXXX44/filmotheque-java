@@ -39,12 +39,12 @@ public class InitialiseurDonnees {
             Participant cron = participantRepository.save(new Participant("Cronenberg", "David"));
 
             // --- MEMBRES ---
-            Membre membre = membreRepository.save(new Membre(0, "Baille", "Anne-Lise", "abaille@campus-eni.fr", "motdepasse"));
+            Membre membre = membreRepository.save(new Membre(1, "Baille", "Anne-Lise", "abaille@campus-eni.fr", "motdepasse"));
 
             // --- FILMS ---
             Film jurassic = new Film(1, "Jurassic Park", 1993, 128,
                     "Le film raconte l'histoire d'un milliardaire et son équipe de généticiens parvenant à ramener à la vie des dinosaures grâce au clonage.",
-                    "jurassic.png");
+                    "jurassic.png", List.of(genres.get(1))); // Science-fiction
 
             //jurassic.setGenre(genres.get(1)); // Science-fiction
             jurassic.setRealisateur(spielberg);
